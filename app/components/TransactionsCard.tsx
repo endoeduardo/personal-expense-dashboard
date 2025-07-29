@@ -1,37 +1,12 @@
 'use client'
-import { useEffect, useState } from "react";
-import { getTransactions } from "./actions";
-
-type Transaction = {
-    id: string;
-    title: string;
-    amount: number;
-    type: string;
-    description: string;
-    // adicione os campos conforme o modelo do Prisma
-};
+import { useContext } from "react";
+import { useRegisterTransactionContext } from "../context/RegisterTransactionContext";
 
 export function TransactionsCard() {
-    const [buttonClicks, setButtonClicks] = useState(0);
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-    const handleButtonClick = () => {
-        setButtonClicks(buttonClicks + 1);
-        console.log("Button clicked", buttonClicks);
-    };
-
-
-    useEffect(() => {
-        // Fetch transactions from the server or any other source
-        console.log("Fetching transactions...");
-        const fetchTransactions = async () => {
-            const newTransactions = await getTransactions();
-            setTransactions(newTransactions);
-        };
-
-        fetchTransactions();
-    }, [buttonClicks]);
-
+    const { transactions } = useRegisterTransactionContext();
+    if (!transactions) {
+        return <p className="text-gray-300">Loading transactions...</p>;
+    }
     return (
         <>
         {(transactions.length > 0) ? (

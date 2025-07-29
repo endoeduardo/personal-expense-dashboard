@@ -1,7 +1,10 @@
+'use client'
 import Form from "next/form";
-import { registerExpense } from "./actions";
+import { useRegisterTransactionContext } from "../context/RegisterTransactionContext";
 
 export function ExpenseForm() {
+    const {registerExpense} = useRegisterTransactionContext()
+
     return (
         <Form action={registerExpense} className="space-y-4">
             <div className="flex flex-row space-y-4">
@@ -47,6 +50,7 @@ export function ExpenseForm() {
                 id="description"
                 name="description"
                 className="w-full p-2 rounded bg-gray-600"
+                maxLength={80}
                 />
             </div>
             <div className="flex justify-center">
