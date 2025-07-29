@@ -1,5 +1,5 @@
 import { ExpenseForm } from "./components/Form";
-
+import { TransactionsCard } from "./components/TransactionsCard";
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
         <h1 className="font-bold text-2xl">Personal Expense Tracker</h1>
         <div className="bg-gray-600 p-4 rounded-lg shadow-md mt-4">
           <ExpenseForm />
+          <TransactionsCard />
         </div>
       </div>
     </>
